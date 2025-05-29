@@ -40,6 +40,8 @@ def main():
         # Login to LinkedIn
         login_to_linkedin(driver)
         
+        time.sleep(10) # To solve the puzzle
+
         # Navigate to Jobs section
         navigate_to_jobs(driver)
         

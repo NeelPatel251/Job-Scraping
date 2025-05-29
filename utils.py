@@ -8,8 +8,8 @@ from LLM import extract_job_description, json_file_create
 import asyncio
 
 # Configuration
-# EMAIL = "basegar197@frisbook.com"
-# PASSWORD = "basegar197@123"
+EMAIL = "basegar197@frisbook.com"
+PASSWORD = "basegar197@123"
 JOB_TITLE = "Full Stack Developer"
 LOCATION = "Ahmedabad, India"
 SORT_BY_OPTION = "most_recent" # Options: "most_recent", "most_relevant"
@@ -26,15 +26,15 @@ def initialize_driver():
     return driver, wait
 
 
-# def login_to_linkedin(driver):
-#     """Login to LinkedIn with provided credentials."""
-#     driver.get("https://www.linkedin.com/login")
-#     time.sleep(2)
+def login_to_linkedin(driver):
+    """Login to LinkedIn with provided credentials."""
+    driver.get("https://www.linkedin.com/login")
+    time.sleep(2)
     
-#     driver.find_element(By.ID, "username").send_keys(EMAIL)
-#     driver.find_element(By.ID, "password").send_keys(PASSWORD + Keys.RETURN)
-#     time.sleep(3)
-#     print("[INFO] Logged in to LinkedIn.")
+    driver.find_element(By.ID, "username").send_keys(EMAIL)
+    driver.find_element(By.ID, "password").send_keys(PASSWORD + Keys.RETURN)
+    time.sleep(3)
+    print("[INFO] Logged in to LinkedIn.")
 
 
 def navigate_to_jobs(driver):
@@ -174,40 +174,6 @@ def show_results(driver):
         time.sleep(5)
     except Exception as e:
         print("[ERROR] Failed to click 'Show results':", e)
-
-# def click_each_job_list_item(driver):
-#     """Iterate through each job list item and click to open job details."""
-#     try:
-#         job_list_container = driver.find_element(By.CLASS_NAME, "WUpyIoStvOvEVowQwyIxAwPHVKUSsGnUXU")
-#         job_list_items = job_list_container.find_elements(By.XPATH, ".//li[contains(@class, 'scaffold-layout__list-item')]")
-#         print(f"[INFO] Found {len(job_list_items)} job list items.")
-
-#         job_descriptions_to_process = []
-
-#         for index, item in enumerate(job_list_items):
-#             try:
-#                 driver.execute_script("arguments[0].scrollIntoView(true);", item)
-#                 time.sleep(1)  
-#                 clickable_div = item.find_element(By.CLASS_NAME, "job-card-container") 
-
-#                 driver.execute_script("arguments[0].click();", clickable_div)
-#                 print(f"[INFO] Clicked job item #{index + 1}")
-#                 time.sleep(2)  # wait for content to load
-
-#                 detail_container = driver.find_element(By.CLASS_NAME, "jobs-search__job-details--container")
-#                 job_text = detail_container.text
-#                 print(f"[INFO] Extracted raw text for job #{index + 1}")
-#                 job_descriptions_to_process.append(job_text)
-
-#             except Exception as e:
-#                 print(f"[ERROR] Failed at job item #{index + 1}: {e}")
-#                 continue 
-
-#     except Exception as e:
-#         print("[ERROR] Could not locate job list container:", e)
-    
-#     finally:
-#         return job_descriptions_to_process
 
 def click_each_job_list_item(driver):
     job_descriptions_to_process = []
